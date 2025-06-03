@@ -34,7 +34,7 @@ const frequentlyUsedUsers = [
 // Function to fetch user name from the backend
 const fetchUserName = async (userId, appId) => {
   try {
-    const res = await fetch(`http://localhost:3000/v1/${appId}/users/${userId}`);
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/v1/${appId}/users/${userId}`);
     if (!res.ok) {
       // If we can't fetch the name, just return the userId
       console.error(`Error fetching name for user ${userId}: ${res.statusText}`);
@@ -104,7 +104,7 @@ const addParticipant = async () => {
   participantActionError.value = null;
   try {
     // Llamar al endpoint del backend para añadir participante, passing keyType from the store
-    const res = await fetch(`http://localhost:3000/conversations/${conversationId}/participants/${userIdToAdd.value}?keyType=${currentKeyType}`, {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/conversations/${conversationId}/participants/${userIdToAdd.value}?keyType=${currentKeyType}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -141,7 +141,7 @@ const removeParticipant = async (userId) => {
   participantActionError.value = null;
   try {
     // Llamar al endpoint del backend para eliminar participante, passing keyType from the store
-    const res = await fetch(`http://localhost:3000/conversations/${conversationId}/participants/${userId}?keyType=${currentKeyType}`, {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/conversations/${conversationId}/participants/${userId}?keyType=${currentKeyType}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

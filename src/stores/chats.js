@@ -19,7 +19,7 @@ export const useChatStore = defineStore('chatStore', () => {
     conversations.value = [];
 
     try {
-      const url = `http://localhost:3000/conversations/${conversationId}?keyType=${apiKeyType.value}`;
+      const url = `${import.meta.env.VITE_BACKEND_URL}/conversations/${conversationId}?keyType=${apiKeyType.value}`;
       console.log('Llamando al backend para buscar conversación:', url);
       const res = await fetch(url);
       if (!res.ok) {
@@ -48,7 +48,7 @@ export const useChatStore = defineStore('chatStore', () => {
     conversations.value = [];
 
     try {
-      const url = `http://localhost:3000/users/${userId}/conversations?keyType=${apiKeyType.value}`;
+      const url = `${import.meta.env.VITE_BACKEND_URL}/users/${userId}/conversations?keyType=${apiKeyType.value}`;
       console.log('Llamando al backend para buscar conversaciones por usuario:', url);
       const res = await fetch(url);
       if (!res.ok) {

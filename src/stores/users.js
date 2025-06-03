@@ -38,7 +38,7 @@ export const useUserStore = defineStore('userStore', () => {
     try {
       // Use the absolute URL for the backend endpoint
       // Include keyType as a query parameter in the URL
-      const url = `http://localhost:3000/users?keyType=${keyType}`;
+      const url = `${import.meta.env.VITE_BACKEND_URL}/users?keyType=${keyType}`;
       console.log('Fetching all users:', url);
 
       const res = await fetch(url);

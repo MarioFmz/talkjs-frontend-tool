@@ -184,6 +184,19 @@ onMounted(async () => {
   }
 });
 
+// Function to add a frequent user directly to the conversation
+const addFrequentUserToConversation = async (userId) => {
+  if (!conversationDetails.value) return;
+  // Evitar añadir si ya está en la conversación
+  if (participants.value && participants.value[userId]) {
+    copiedMessage.value = 'El usuario ya es participante.';
+    setTimeout(() => { copiedMessage.value = null; }, 2000);
+    return;
+  }
+  userIdToAdd.value = userId;
+  await addParticipant();
+};
+
 </script>
 
 <template>
@@ -213,7 +226,13 @@ onMounted(async () => {
             <li v-for="user in frequentlyUsedUsers" :key="user.id" class="frequent-user-item">
               <span class="user-name">{{ user.name }}</span> 
               <span class="user-id">{{ user.id }}</span>
-              <button @click="copyUserId(user.id)" class="copy-button">Copiar ID</button>
+              <button 
+                @click="addFrequentUserToConversation(user.id)"
+                class="copy-button"
+                :disabled="addingParticipant || removingParticipantId !== null || (participants && participants[user.id]) || !conversationDetails"
+              >
+                Añadir
+              </button>
             </li>
           </ul>
            <div v-if="copiedMessage" class="copied-feedback">{{ copiedMessage }}</div>

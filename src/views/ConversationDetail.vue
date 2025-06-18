@@ -263,6 +263,13 @@ const addFrequentUserToConversation = async (userId) => {
                 <p v-if="userStore.users.find(user => user.id === participantId).email && userStore.users.find(user => user.id === participantId).email.length > 0">
                   <strong>Email:</strong> {{ userStore.users.find(user => user.id === participantId).email.join(', ') }}
                 </p>
+                <button
+                  class="remove-participant-button"
+                  @click="removeParticipant(participantId)"
+                  :disabled="removingParticipantId === participantId || addingParticipant"
+                >
+                  {{ removingParticipantId === participantId ? 'Eliminando...' : 'Eliminar' }}
+                </button>
               </template>
               <template v-else>
                 <p><strong>ID:</strong> {{ participantId }}</p>
@@ -567,5 +574,22 @@ h2 {
     overflow-x: auto;
     font-size: 0.9em;
     color: #333;
+}
+
+.remove-participant-button {
+  margin-top: 0.5em;
+  padding: 0.3em 0.8em;
+  background-color: #dc3545; /* Rojo */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+.remove-participant-button:disabled {
+  background-color: #e57373;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 </style> 

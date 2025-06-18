@@ -229,9 +229,10 @@ const addFrequentUserToConversation = async (userId) => {
               <button 
                 @click="addFrequentUserToConversation(user.id)"
                 class="copy-button"
+                :class="{ 'already-added': participants && participants[user.id] }"
                 :disabled="addingParticipant || removingParticipantId !== null || (participants && participants[user.id]) || !conversationDetails"
               >
-                Añadir
+                {{ (participants && participants[user.id]) ? 'Ya añadido' : 'Añadir' }}
               </button>
             </li>
           </ul>
@@ -480,6 +481,12 @@ h2 {
 
 .frequent-user-item .copy-button:hover {
   background-color: #7cb342;
+}
+
+.copy-button.already-added {
+  background-color: #bdbdbd; /* Gris para ya añadido */
+  color: #fff;
+  cursor: not-allowed;
 }
 
 .copied-feedback {

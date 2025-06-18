@@ -29,6 +29,8 @@ const frequentlyUsedUsers = [
   { name: 'Marco', id: '85b03c06-efc8-4722-9110-aaf38aa17a94' },
   { name: 'Rubén', id: '27df89d0-74e0-4818-925b-628996a66fa7' },
   { name: 'Ana', id: 'a766f871-e909-4a0c-8b23-86a255a452c4' },
+  { name: 'Marta', id: 'e8d6fd54-c64b-4755-8e6a-d9c438098927'},
+  { name: 'Daniel', id: 'eba2de76-0973-44c8-9d9a-eed3ccf9a092'}
 ];
 
 // Function to fetch user name from the backend
